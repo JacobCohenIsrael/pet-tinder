@@ -2,6 +2,10 @@
 
 NestJS based api for dog tinder application.
 
+## Prerequirments
+
+Docker daemon must be installed on your machine to run this application in local mode
+
 ## Installation
 
 ```bash
@@ -11,6 +15,9 @@ $ npm ci
 ## Running the app
 
 ```bash
+# docker
+$ docker-compose up
+
 # development
 $ npm run start
 

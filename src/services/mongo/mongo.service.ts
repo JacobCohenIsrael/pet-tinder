@@ -1,9 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { MongoClient } from 'mongodb';
+import { Db } from 'mongodb';
 
 @Injectable()
 export class MongoService {
-  constructor(
-    @Inject('DATABASE_CONNECTION') private readonly mongo: MongoClient,
-  ) {}
+  constructor(@Inject('DATABASE_CONNECTION') public readonly db: Db) {}
 }
