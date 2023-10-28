@@ -29,20 +29,19 @@ export class PetfinderService {
         },
       ),
     );
-    console.log(data);
+    return data;
   }
 
   private async getConnector(): Promise<any> {
-    if (!this.petfinderConnector) {
-      const { data } = await firstValueFrom(
-        this.httpService.post(`https://api.petfinder.com/v2/oauth2/token`, {
-          grant_type: 'client_credentials',
-          client_id: this.key,
-          client_secret: this.secret,
-        }),
-      );
-      this.petfinderConnector = data;
-    }
+    // TODO: and only refresh after expiration
+    const { data } = await firstValueFrom(
+      this.httpService.post(`https://api.petfinder.com/v2/oauth2/token`, {
+        grant_type: 'client_credentials',
+        client_id: this.key,
+        client_secret: this.secret,
+      }),
+    );
+    this.petfinderConnector = data;
     return this.petfinderConnector;
   }
 }

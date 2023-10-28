@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { VoteRequest } from './models/vote-request';
 import { PetsCollection } from 'src/services/mongo/collections/pets.collection';
 import { PetfinderService } from 'src/vendors/petfinder/petfinder.service';
+import { PetType } from 'src/vendors/petfinder/pet-type.enum';
 
 @Injectable()
 export class PetService {
