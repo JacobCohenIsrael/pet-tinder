@@ -1,19 +1,24 @@
 import { Module } from '@nestjs/common';
 import { MongoService } from './mongo.service';
-import { MongoClient } from 'mongodb';
+import { Db, MongoClient } from 'mongodb';
+import { ConfigService } from '@nestjs/config';
+import { PetsCollection } from './collections/pets.collection';
 
 @Module({
   providers: [
     {
       provide: 'DATABASE_CONNECTION',
-      useFactory: async () => {
-        const client = new MongoClient('mongodb://localhost:27017');
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService): Promise<Db> => {
+        const connectionString = configService.get('database.connection');
+        const client = new MongoClient(connectionString);
         await client.connect();
-        return client.db('your-database-name');
+        return client.db('petsTinder');
       },
     },
     MongoService,
+    PetsCollection,
   ],
-  exports: [MongoService],
+  exports: [PetsCollection],
 })
 export class MongoModule {}
