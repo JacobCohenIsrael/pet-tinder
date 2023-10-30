@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum } from 'class-validator';
-import { PetGender } from 'src/vendors/petfinder/pet-gender.enum';
-import { PetType } from 'src/vendors/petfinder/pet-type.enum';
+import { PetGender } from '../../vendors/petfinder/pet-gender.enum';
+import { PetType } from '../../vendors/petfinder/pet-type.enum';
 
 export class GetPetsListRequest {
   @IsEnum(PetType)

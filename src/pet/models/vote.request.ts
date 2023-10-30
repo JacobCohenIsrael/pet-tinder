@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class VoteRequest {
   @ApiProperty()
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  dogId: string;
+  petId: number;
 
   @ApiProperty()
   @IsBoolean()

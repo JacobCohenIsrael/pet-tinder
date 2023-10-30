@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { VoteRequest } from 'src/pet/models/vote.request';
-import { PetService } from 'src/pet/pet.service';
 import { ApiOperation } from '@nestjs/swagger';
-import { GetPetsListRequest } from 'src/pet/models/get-pets-list.request';
-import { AnimalModel } from 'src/vendors/petfinder/animal.model';
+import { VoteRequest } from '../../pet/models/vote.request';
+import { PetService } from '../../pet/pet.service';
+import { GetPetsListRequest } from '../..//pet/models/get-pets-list.request';
+import { AnimalModel } from '../../vendors/petfinder/animal.model';
 
 @Controller('pet')
 export class PetController {
@@ -16,7 +16,7 @@ export class PetController {
   public async getPetsList(
     @Query() getPetListRequest: GetPetsListRequest,
   ): Promise<AnimalModel[]> {
-    const animals = await this.petService.getPetsListByType(
+    const animals = await this.petService.getPetsList(
       getPetListRequest.petType,
       getPetListRequest.petGender,
     );
