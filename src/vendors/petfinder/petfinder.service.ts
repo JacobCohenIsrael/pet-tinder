@@ -19,7 +19,7 @@ export class PetfinderService {
     this.secret = configService.get('PETFINDER_API_SECRET');
   }
 
-  public async getPetByType(
+  public async getAnimals(
     type: PetType,
     gender: PetGender,
     limit = 50,
@@ -36,6 +36,18 @@ export class PetfinderService {
       ),
     );
     return data;
+  }
+
+  public async getPetById(petId: number): Promise<AnimalModel> {
+    const connector = await this.getConnector();
+    const { data } = await firstValueFrom(
+      this.httpService.get(`https://api.petfinder.com/v2/animals/${petId}`, {
+        headers: {
+          Authorization: `Bearer ${connector.access_token}`,
+        },
+      }),
+    );
+    return data.animal;
   }
 
   private async getConnector(): Promise<any> {

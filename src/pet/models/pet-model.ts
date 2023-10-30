@@ -1,7 +1,7 @@
-import { PetType } from 'src/vendors/petfinder/pet-type.enum';
+import { PetType } from '../../vendors/petfinder/pet-type.enum';
 
 export class PetModel {
-  petId: string;
+  petId: number;
   petType: PetType;
   likes: number;
   dislikes: number;
