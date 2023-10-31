@@ -15,12 +15,12 @@ export class PetController {
   })
   public async getPetsList(
     @Query() getPetListRequest: GetPetsListRequest,
-  ): Promise<AnimalModel[]> {
+  ): Promise<{ pets: AnimalModel[] }> {
     const animals = await this.petService.getPetsList(
       getPetListRequest.petType,
       getPetListRequest.petGender,
     );
-    return animals.map((animal) => {
+    const pets = animals.map((animal) => {
       return {
         id: animal.id,
         type: animal.type,
@@ -30,6 +30,9 @@ export class PetController {
         photos: animal.photos,
       };
     });
+    return {
+      pets,
+    };
   }
 
   @Post('vote')

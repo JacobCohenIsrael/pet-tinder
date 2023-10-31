@@ -5,7 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  const port = process.env.PORT || 8080;
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Pet Tinder')
     .setDescription('API for Pet Tinder App')
@@ -22,6 +23,6 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(3000);
+  await app.listen(port);
 }
 bootstrap();
