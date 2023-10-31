@@ -1,0 +1,17 @@
+runtime: nodejs18
+
+service: default
+
+env_variables:
+  NODE_ENV: Development
+  PROJECT_NAME: pets-tinder-server
+  PETFINDER_API_KEY: gW8Zsfis3YQMFs4Z673cJxlCPJoQ2SRpYmXdSiXbwtprCkojW2
+  PETFINDER_API_SECRET: UxSA1mync8qPEB6P4I19KDiyl8gCqzW1v9Qpc0vz
+
+instance_class: F1
+
+handlers:
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
